@@ -1,3 +1,4 @@
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -56,48 +57,63 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
-    ## WRITE POP_FIRST METHOD HERE ##
-    #                               #
-    #                               #
-    #                               #
-    #                               #
-    #################################
     def pop_first(self):
         if self.length == 0:
             return None
-        
         temp = self.head
-        
         if self.length == 1:
             self.head = None
             self.tail = None
-        
         else:
             self.head = self.head.next
             self.head.prev = None
-            temp.next = None
-
-        self.length = self.length-1
+            temp.next = None      
+        self.length -= 1
         return temp
 
-my_doubly_linked_list = DoublyLinkedList(2)
+    ### WRITE GET METHOD HERE ###
+    #                           #
+    #                           #
+    #                           #
+    #                           #
+    #############################
+
+    def get(self,idx):
+        if idx < 0 or idx>= self.length:
+            return None
+        
+        temp = self.head
+        temp_idx = 0
+        while temp:
+            if temp_idx == idx:
+                return temp
+            else:
+                temp_idx += 1
+                temp = temp.next
+        
+        
+
+
+my_doubly_linked_list = DoublyLinkedList(0)
 my_doubly_linked_list.append(1)
+my_doubly_linked_list.append(2)
+my_doubly_linked_list.append(3)
 
+print('Get node from first half of DLL:')
+print(my_doubly_linked_list.get(1).value)
 
-# (2) Items - Returns 2 Node
-print(my_doubly_linked_list.pop_first().value)
-# (1) Item -  Returns 1 Node
-print(my_doubly_linked_list.pop_first().value)
-# (0) Items - Returns None
-print(my_doubly_linked_list.pop_first())
+print('\nGet node from second half of DLL:')
+print(my_doubly_linked_list.get(2).value)
 
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-    2
+    Get node from first half of DLL:
     1
-    None
+
+    Get node from second half of DLL:
+    2
 
 """

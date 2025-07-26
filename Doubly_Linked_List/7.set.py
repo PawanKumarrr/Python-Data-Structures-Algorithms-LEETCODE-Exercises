@@ -56,48 +56,77 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
-    ## WRITE POP_FIRST METHOD HERE ##
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None      
+        self.length -= 1
+        return temp
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1, index, -1):
+                temp = temp.prev  
+        return temp
+        
+    ## WRITE SET_VALUE METHOD HERE ##
     #                               #
     #                               #
     #                               #
     #                               #
     #################################
-    def pop_first(self):
-        if self.length == 0:
-            return None
-        
-        temp = self.head
-        
-        if self.length == 1:
-            self.head = None
-            self.tail = None
-        
+
+    def set_value(self, idx, value):
+        temp = self.get(idx)
+        if temp:
+            temp.value = value
+            return True
         else:
-            self.head = self.head.next
-            self.head.prev = None
-            temp.next = None
-
-        self.length = self.length-1
-        return temp
-
-my_doubly_linked_list = DoublyLinkedList(2)
-my_doubly_linked_list.append(1)
+            return False
 
 
-# (2) Items - Returns 2 Node
-print(my_doubly_linked_list.pop_first().value)
-# (1) Item -  Returns 1 Node
-print(my_doubly_linked_list.pop_first().value)
-# (0) Items - Returns None
-print(my_doubly_linked_list.pop_first())
+my_doubly_linked_list = DoublyLinkedList(11)
+my_doubly_linked_list.append(3)
+my_doubly_linked_list.append(23)
+my_doubly_linked_list.append(7)
+
+print('DLL before set_value():')
+my_doubly_linked_list.print_list()
+
+my_doubly_linked_list.set_value(1,4)
+
+print('\nDLL after set_value():')
+my_doubly_linked_list.print_list()
 
 
 
 """
     EXPECTED OUTPUT:
     ----------------
-    2
-    1
-    None
+    DLL before set_value():
+    11
+    3
+    23
+    7
+
+    DLL after set_value():
+    11
+    4
+    23
+    7
 
 """
