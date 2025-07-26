@@ -1,5 +1,7 @@
 # Python-Data-Structures-Algorithms-LEETCODE-Exercises
-Course Practice
+
+
+Let's Practice DSA Skills in Python this weekend. Lesss gooo............
 
 
 
